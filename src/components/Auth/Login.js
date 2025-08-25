@@ -64,6 +64,8 @@ const Login = () => {
         </div>
         <button type="submit">Login</button>
       </form>
+      <p>Not having account</p>
+      <button onClick={() => window.location.href = '/register'}>Register</button>
     </div>
   );
 };
