@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const FollowButton = ({ targetUserId, isInitiallyFollowing=false }) => {
   const [isFollowing, setIsFollowing] = useState(isInitiallyFollowing);
   const [loading, setLoading] = useState(false);
@@ -16,8 +18,8 @@ const FollowButton = ({ targetUserId, isInitiallyFollowing=false }) => {
 
     try {
       const url = isFollowing
-        ? `http://127.0.0.1:8000/profile/api/users/unfollow/`
-        : `http://127.0.0.1:8000/profile/api/users/follow/`;
+        ? `${BASE_URL}/profile/api/users/unfollow/`
+        : `${BASE_URL}/profile/api/users/follow/`;
 
       const res = await fetch(url, {
         method: 'POST',

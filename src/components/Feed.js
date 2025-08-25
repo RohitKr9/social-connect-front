@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CreatePost from './CreatePost';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const PostListCreate = ({ setView }) => {
   const [posts, setPosts] = useState([]);
   const [content, setContent] = useState('');
@@ -20,7 +22,7 @@ const PostListCreate = ({ setView }) => {
           setView('login');
           return;
         }
-        const response = await fetch('http://127.0.0.1:8000/profile/api/posts/', {
+        const response = await fetch(`${BASE_URL}/profile/api/posts/`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -45,62 +47,10 @@ const PostListCreate = ({ setView }) => {
     fetchPosts();
   }, [setView]);
 
-  // Handle post creation
-  // const handleCreatePost = async () => {
-  //   if (!content.trim()) {
-  //     setMessage('Post content cannot be empty.');
-  //     return;
-  //   }
-
-  //   try {
-  //     const token = localStorage.getItem('token');
-  //     if (!token) {
-  //       setMessage('Please log in to create a post.');
-  //       setView('login');
-  //       return;
-  //     }
-  //     const response = await fetch('http://127.0.0.1:8000/profile/api/posts/', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Authorization': `Bearer ${token}`,
-  //       },
-  //       body: JSON.stringify({ content }),
-  //     });
-  //     const data = await response.json();
-  //     if (response.ok) {
-  //       setPosts([data, ...posts]); // Add new post to the top
-  //       setContent('');
-  //       setMessage('Post created successfully!');
-  //     } else {
-  //       setMessage(data.message || 'Failed to create post.');
-  //     }
-  //   } catch (error) {
-  //     setMessage('Error creating post. Please try again.');
-  //   }
-
-
   return (
     <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
       <h2 className="text-2xl font-bold mb-4 text-center">Posts</h2>
 
-      {/* Create Post Section */}
-      {/* <div className="mb-6">
-        <textarea
-          placeholder="What's on your mind?"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          className="w-full p-2 mb-4 border rounded resize-none"
-          rows="4"
-        />
-        <button
-          onClick={handleCreatePost}
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-        >
-          Create Post
-        </button>
-        {message && <p className="mt-4 text-center text-red-500">{message}</p>}
-      </div> */}
       <CreatePost />
       {loading ? (
         <p className="text-center">Loading posts...</p>

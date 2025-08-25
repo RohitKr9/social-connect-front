@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import  supabase  from '../supabaseClient'; // Adjust path as needed
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const CreateProfile = () => {
   const navigate = useNavigate();
 
@@ -71,7 +73,7 @@ const CreateProfile = () => {
         return;
       }
 
-      const response = await fetch('http://127.0.0.1:8000/profile/api/users/me', {
+      const response = await fetch(`${BASE_URL}profile/api/users/me`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const Register = () => {
 
   const [formData, setFormData] = useState({
@@ -20,7 +22,7 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/auth/api/register/', {
+      const response = await fetch(`${BASE_URL}/auth/api/register/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import supabase from '../supabaseClient'; // Make sure this points to your client setup
+import supabase from '../supabaseClient'; 
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const CreatePost = () => {
   const [formData, setFormData] = useState({
@@ -63,7 +65,7 @@ const CreatePost = () => {
         category: formData.category,
       };
 
-      const response = await fetch('http://127.0.0.1:8000/profile/api/posts/', {
+      const response = await fetch(`${BASE_URL}/profile/api/posts/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

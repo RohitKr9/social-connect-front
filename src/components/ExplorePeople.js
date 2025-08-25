@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import FollowButton from './FollowButton';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const ExplorePeople = ({ setView }) => {
   const [usersToFollow, setUers] = useState([]);
   const [message, setMessage] = useState('');
@@ -19,7 +21,7 @@ const ExplorePeople = ({ setView }) => {
           setView('login');
           return;
         }
-        const response = await fetch('http://127.0.0.1:8000/profile/api/users/profile-list', {
+        const response = await fetch(`${BASE_URL}/profile/api/users/profile-list`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

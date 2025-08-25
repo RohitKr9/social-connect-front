@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const FollowingList = ({ setView }) => {
   const [followings, setFollowings] = useState([]);
   const [message, setMessage] = useState('');
@@ -18,7 +20,7 @@ const FollowingList = ({ setView }) => {
           setView('login');
           return;
         }
-        const response = await fetch('http://127.0.0.1:8000/profile/api/users/following/', {
+        const response = await fetch(`${BASE_URL}/profile/api/users/following/`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

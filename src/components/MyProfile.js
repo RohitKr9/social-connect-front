@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const MyProfile = () => {
     const [profile, setProfile] = useState(null);
     const [posts, setPosts] = useState([]);
@@ -22,7 +24,7 @@ const MyProfile = () => {
             try {
                 // Fetch user profile
                 const resProfile = await fetch(
-                    "http://127.0.0.1:8000/profile/api/users/me",
+                    `${BASE_URL}/profile/api/users/me`,
                     {
                         headers: getAuthHeaders(),
                         method: 'POST',
@@ -34,7 +36,7 @@ const MyProfile = () => {
 
                 // Fetch user's posts
                 const resPosts = await fetch(
-                    "http://127.0.0.1:8000/profile/api/users/myposts/",
+                    `${BASE_URL}/profile/api/users/myposts/`,
                     {
                         headers: getAuthHeaders(),
                         method: 'GET',
@@ -56,7 +58,7 @@ const MyProfile = () => {
 
     const handleLogout = async () => {
         try {
-            await fetch("http://127.0.0.1:8000/profile/api/logout/", {
+            await fetch(`${BASE_URL}/profile/api/logout/`, {
                 method: "POST",
                 headers: getAuthHeaders(),
             });
