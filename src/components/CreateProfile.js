@@ -73,7 +73,7 @@ const CreateProfile = () => {
         return;
       }
 
-      const response = await fetch(`${BASE_URL}profile/api/users/me`, {
+      const response = await fetch(`${BASE_URL}/profile/api/users/me`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
