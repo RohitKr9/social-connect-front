@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import FollowButton from './FollowButton';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -72,6 +73,12 @@ const FollowingList = ({ setView }) => {
             <div key={following.id} className="p-4 bg-gray-100 rounded-lg">
               <p className="text-gray-800 font-medium">
                 {following.username || 'Unknown User'}
+                {console.log('Follower:', following)}
+              {console.log('Follower ID:', following.id)}
+              <FollowButton
+                    targetUserId={following.id}
+                    isInitiallyFollowing={true}
+                />
               </p>
             </div>
           ))}

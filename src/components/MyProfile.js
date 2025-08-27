@@ -1,6 +1,7 @@
 // src/components/MyProfile.js
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Notifications from "./Notifications"; 
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -118,6 +119,8 @@ const MyProfile = () => {
     if (!profile) return <div>Loading...</div>;
     return (
         <div style={{ maxWidth: 400, margin: "0 auto" }}>
+            
+            <Notifications userId={profile.user_id} />   
             <div style={{ textAlign: "center" }}>
                 <img
                     src={profile.avatar}
@@ -144,13 +147,13 @@ const MyProfile = () => {
                             src={post.image_url}
                             alt="Post"
                             style={{
-                                width: '200px',      // fixed width
-                                height: '150px',     // fixed height
-                                objectFit: 'cover',  // crop & cover the box nicely
-                                borderRadius: '8px', // rounded corners
-                                display: 'block',    // to remove inline image spacing
-                                margin: '10px', // center horizontally + bottom margin
-                                boxShadow: '0 2px 8px rgba(0,0,0,0.1)', // subtle shadow
+                                width: '200px',      
+                                height: '150px',    
+                                objectFit: 'cover',  
+                                borderRadius: '8px', 
+                                display: 'block',    
+                                margin: '10px', 
+                                boxShadow: '0 2px 8px rgba(0,0,0,0.1)', 
                             }}
                         />
                         <li key={post.id}>{post.title || post.content || "Untitled Post"}</li></div>
