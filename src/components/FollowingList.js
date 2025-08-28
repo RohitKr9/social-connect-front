@@ -58,7 +58,7 @@ const FollowingList = ({ setView }) => {
       onClick={() => navigate('/my-profile')}
       className="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition-colors"
     >
-      Back to Posts
+      Back to Profile
     </button>
   </div>
   {/* Following List Section */}
@@ -76,8 +76,9 @@ const FollowingList = ({ setView }) => {
           <p className="text-gray-800 font-medium">
             {following.username || 'Unknown User'}
           </p>
+          {console.log(following)}
           <FollowButton
-            targetUserId={following.id}
+            targetUserId={following.user_id}
             isInitiallyFollowing={true}
           />
         </div>
@@ -85,44 +86,6 @@ const FollowingList = ({ setView }) => {
     </div>
   )}
 </div>
-    // <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
-    //   <h2 className="text-2xl font-bold mb-4 text-center">Your Followings</h2>
-
-    //   {/* Back Button */}
-    //   <div className="mb-6">
-    //     <button
-    //       onClick={() => navigate('/my-profile')}
-    //       className="w-full bg-gray-500 text-white p-2 rounded hover:bg-gray-600"
-    //     >
-    //       Back to Posts
-    //     </button>
-    //   </div>
-
-    //   {/* Following List Section */}
-    //   {loading ? (
-    //     <p className="text-center">Loading followings...</p>
-    //   ) : followings.length === 0 ? (
-    //     <p className="text-center">You are not following anyone.</p>
-    //   ) : (
-    //     <div className="space-y-4">
-    //       {followings.map((following) => (
-    //         <div key={following.id} className="p-4 bg-gray-100 rounded-lg">
-    //           <p className="text-gray-800 font-medium">
-    //             {following.username || 'Unknown User'}
-    //             {console.log('Follower:', following)}
-    //           {console.log('Follower ID:', following.id)}
-    //           <FollowButton
-    //                 targetUserId={following.id}
-    //                 isInitiallyFollowing={true}
-    //             />
-    //           </p>
-    //         </div>
-    //       ))}
-    //     </div>
-    //   )}
-
-    //   {message && <p className="mt-4 text-center text-red-500">{message}</p>}
-    // </div>
   );
 };
 
