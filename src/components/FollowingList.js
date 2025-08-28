@@ -46,46 +46,53 @@ const FollowingList = ({ setView }) => {
     fetchFollowings();
   }, [setView]);
 
-  useEffect(() => {}, [followings]);
+  useEffect(() => { }, [followings]);
 
   return (
     <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl mx-auto mt-10">
-  <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Your Followings</h2>
-  {message && <p className="text-red-500 text-sm mb-4 text-center">{message}</p>}
-  {/* Back Button */}
-  <div className="mb-6">
-    <button
-      onClick={() => navigate('/my-profile')}
-      className="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition-colors"
-    >
-      Back to Profile
-    </button>
-  </div>
-  {/* Following List Section */}
-  {loading ? (
-    <p className="text-center text-gray-600">Loading followings...</p>
-  ) : followings.length === 0 ? (
-    <p className="text-center text-gray-600">You are not following anyone.</p>
-  ) : (
-    <div className="space-y-4">
-      {followings.map((following) => (
-        <div
-          key={following.id}
-          className="p-4 bg-gray-50 border border-gray-200 rounded-md flex justify-between items-center"
+      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Your Followings</h2>
+      {message && <p className="text-red-500 text-sm mb-4 text-center">{message}</p>}
+      {/* Back Button */}
+      <div className="mb-6">
+        <button
+          onClick={() => navigate('/my-profile')}
+          className="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition-colors"
         >
-          <p className="text-gray-800 font-medium">
-            {following.username || 'Unknown User'}
-          </p>
-          {console.log(following)}
-          <FollowButton
-            targetUserId={following.user_id}
-            isInitiallyFollowing={true}
-          />
+          Back to Profile
+        </button>
+      </div>
+      {/* Following List Section */}
+      {loading ? (
+        <p className="text-center text-gray-600">Loading followings...</p>
+      ) : followings.length === 0 ? (
+        <p className="text-center text-gray-600">You are not following anyone.</p>
+      ) : (
+        <div className="space-y-4">
+          {followings.map((following) => (
+            <div
+              key={following.id}
+              className="p-4 bg-gray-50 border border-gray-200 rounded-md flex justify-between items-center"
+            >
+              <div className="flex items-center space-x-3">
+                <img
+                  src={following.avatar}
+                  alt={`${following.username || 'Unknown User'} avatar`}
+                  className="w-10 h-10 rounded-full object-cover"
+                />
+                <p className="text-gray-800 font-medium">
+                  {following.username || 'Unknown User'}
+                </p>
+              </div>
+              {console.log(following)}
+              <FollowButton
+                targetUserId={following.user_id}
+                isInitiallyFollowing={true}
+              />
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
-  )}
-</div>
   );
 };
 

@@ -131,47 +131,6 @@ const CreatePost = () => {
     </button>
   </div>
 </div>
-  //   <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
-  //     <h2 className="text-2xl font-bold mb-4 text-center">Create a Post</h2>
-
-  //     <div className="mb-6">
-  //       <textarea
-  //         name="content"
-  //         placeholder="What's on your mind?"
-  //         value={formData.content}
-  //         onChange={handleChange}
-  //         className="w-full p-2 mb-4 border rounded resize-none"
-  //         rows="4"
-  //         maxLength="280"
-  //       />
-  //       <input
-  //         type="file"
-  //         name="image"
-  //         accept="image/*"
-  //         onChange={handleChange}
-  //         className="w-full p-2 mb-4 border rounded"
-  //       />
-  //       <select
-  //         name="category"
-  //         value={formData.category}
-  //         onChange={handleChange}
-  //         className="w-full p-2 mb-4 border rounded"
-  //       >
-  //         <option value="general">General</option>
-  //         <option value="announcement">Announcement</option>
-  //         <option value="question">Question</option>
-  //       </select>
-  //       <button
-  //         onClick={handleCreatePost}
-  //         className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-  //         disabled={uploading}
-  //       >
-  //         {uploading ? 'Creating Post...' : 'Create Post'}
-  //       </button>
-  //     </div>
-
-  //     {message && <p className="mt-4 text-center text-red-500">{message}</p>}
-  //   </div>
   );
 };
 
