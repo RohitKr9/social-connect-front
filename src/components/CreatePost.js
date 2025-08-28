@@ -92,47 +92,86 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
-      <h2 className="text-2xl font-bold mb-4 text-center">Create a Post</h2>
+    <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl mx-auto mt-10">
+  <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Create a Post</h2>
+  {message && <p className="text-red-500 text-sm mb-4 text-center">{message}</p>}
+  <div className="space-y-4">
+    <textarea
+      name="content"
+      placeholder="What's on your mind?"
+      value={formData.content}
+      onChange={handleChange}
+      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 placeholder-gray-400 resize-none"
+      rows="4"
+      maxLength="280"
+    />
+    <input
+      type="file"
+      name="image"
+      accept="image/*"
+      onChange={handleChange}
+      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200"
+    />
+    <select
+      name="category"
+      value={formData.category}
+      onChange={handleChange}
+      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-700"
+    >
+      <option value="general">General</option>
+      <option value="announcement">Announcement</option>
+      <option value="question">Question</option>
+    </select>
+    <button
+      onClick={handleCreatePost}
+      className="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+      disabled={uploading}
+    >
+      {uploading ? 'Creating Post...' : 'Create Post'}
+    </button>
+  </div>
+</div>
+  //   <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
+  //     <h2 className="text-2xl font-bold mb-4 text-center">Create a Post</h2>
 
-      <div className="mb-6">
-        <textarea
-          name="content"
-          placeholder="What's on your mind?"
-          value={formData.content}
-          onChange={handleChange}
-          className="w-full p-2 mb-4 border rounded resize-none"
-          rows="4"
-          maxLength="280"
-        />
-        <input
-          type="file"
-          name="image"
-          accept="image/*"
-          onChange={handleChange}
-          className="w-full p-2 mb-4 border rounded"
-        />
-        <select
-          name="category"
-          value={formData.category}
-          onChange={handleChange}
-          className="w-full p-2 mb-4 border rounded"
-        >
-          <option value="general">General</option>
-          <option value="announcement">Announcement</option>
-          <option value="question">Question</option>
-        </select>
-        <button
-          onClick={handleCreatePost}
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-          disabled={uploading}
-        >
-          {uploading ? 'Creating Post...' : 'Create Post'}
-        </button>
-      </div>
+  //     <div className="mb-6">
+  //       <textarea
+  //         name="content"
+  //         placeholder="What's on your mind?"
+  //         value={formData.content}
+  //         onChange={handleChange}
+  //         className="w-full p-2 mb-4 border rounded resize-none"
+  //         rows="4"
+  //         maxLength="280"
+  //       />
+  //       <input
+  //         type="file"
+  //         name="image"
+  //         accept="image/*"
+  //         onChange={handleChange}
+  //         className="w-full p-2 mb-4 border rounded"
+  //       />
+  //       <select
+  //         name="category"
+  //         value={formData.category}
+  //         onChange={handleChange}
+  //         className="w-full p-2 mb-4 border rounded"
+  //       >
+  //         <option value="general">General</option>
+  //         <option value="announcement">Announcement</option>
+  //         <option value="question">Question</option>
+  //       </select>
+  //       <button
+  //         onClick={handleCreatePost}
+  //         className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+  //         disabled={uploading}
+  //       >
+  //         {uploading ? 'Creating Post...' : 'Create Post'}
+  //       </button>
+  //     </div>
 
-      {message && <p className="mt-4 text-center text-red-500">{message}</p>}
-    </div>
+  //     {message && <p className="mt-4 text-center text-red-500">{message}</p>}
+  //   </div>
   );
 };
 

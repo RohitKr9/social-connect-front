@@ -44,39 +44,71 @@ const FollowersList = ({ setView }) => {
   }, [setView]);
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
-      <h2 className="text-2xl font-bold mb-4 text-center">Your Followers</h2>
-
-      {/* Back Button */}
-      <div className="mb-6">
-        <button
-          onClick={() => navigate('/my-profile')}
-          className="w-full bg-gray-500 text-white p-2 rounded hover:bg-gray-600"
+    <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl mx-auto mt-10">
+  <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Your Followers</h2>
+  {message && <p className="text-red-500 text-sm mb-4 text-center">{message}</p>}
+  {/* Back Button */}
+  <div className="mb-6">
+    <button
+      onClick={() => navigate('/my-profile')}
+      className="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition-colors"
+    >
+      Back to Posts
+    </button>
+  </div>
+  {/* Followers List Section */}
+  {loading ? (
+    <p className="text-center text-gray-600">Loading followers...</p>
+  ) : followers.length === 0 ? (
+    <p className="text-center text-gray-600">You have no followers.</p>
+  ) : (
+    <div className="space-y-4">
+      {followers.map((follower) => (
+        <div
+          key={follower.id}
+          className="p-4 bg-gray-50 border border-gray-200 rounded-md"
         >
-          Back to Posts
-        </button>
-      </div>
-
-      {/* Followers List Section */}
-      {loading ? (
-        <p className="text-center">Loading followers...</p>
-      ) : followers.length === 0 ? (
-        <p className="text-center">You have no followers.</p>
-      ) : (
-        <div className="space-y-4">
-          {followers.map((follower) => (
-            <div key={follower.id} className="p-4 bg-gray-100 rounded-lg">
-              <p className="text-gray-800 font-medium">
-                {follower.username || 'Unknown User'}
-              </p>
-            </div>
-          ))}
+          <p className="text-gray-800 font-medium">
+            {follower.username || 'Unknown User'}
+          </p>
         </div>
-      )}
-
-      {message && <p className="mt-4 text-center text-red-500">{message}</p>}
+      ))}
     </div>
-  );
+  )}
+</div>);
+  //   <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
+  //     <h2 className="text-2xl font-bold mb-4 text-center">Your Followers</h2>
+
+  //     {/* Back Button */}
+  //     <div className="mb-6">
+  //       <button
+  //         onClick={() => navigate('/my-profile')}
+  //         className="w-full bg-gray-500 text-white p-2 rounded hover:bg-gray-600"
+  //       >
+  //         Back to Posts
+  //       </button>
+  //     </div>
+
+  //     {/* Followers List Section */}
+  //     {loading ? (
+  //       <p className="text-center">Loading followers...</p>
+  //     ) : followers.length === 0 ? (
+  //       <p className="text-center">You have no followers.</p>
+  //     ) : (
+  //       <div className="space-y-4">
+  //         {followers.map((follower) => (
+  //           <div key={follower.id} className="p-4 bg-gray-100 rounded-lg">
+  //             <p className="text-gray-800 font-medium">
+  //               {follower.username || 'Unknown User'}
+  //             </p>
+  //           </div>
+  //         ))}
+  //       </div>
+  //     )}
+
+  //     {message && <p className="mt-4 text-center text-red-500">{message}</p>}
+  //   </div>
+  // );
 };
 
 export default FollowersList;

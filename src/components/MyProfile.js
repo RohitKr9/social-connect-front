@@ -1,7 +1,8 @@
 // src/components/MyProfile.js
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Notifications from "./Notifications"; 
+import Notifications from "./Notifications";
+import Comments from "./Comment";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -118,62 +119,158 @@ const MyProfile = () => {
 
     if (!profile) return <div>Loading...</div>;
     return (
-        <div style={{ maxWidth: 400, margin: "0 auto" }}>
-            
-            <Notifications userId={profile.user_id} />   
-            <div style={{ textAlign: "center" }}>
-                <img
-                    src={profile.avatar}
-                    alt="profile"
-                    width={100}
-                    height={100}
-                    style={{ borderRadius: "50%", objectFit: "cover" }}
-                />
-                <h2>{profile.username}</h2>
-                <h3>{profile.bio}</h3>
-                <h3>{profile.website}</h3>
-                <div>
-                    <span><b>{profile.post_count}</b> Posts</span> |{""}
-                    <span><b>{profile.followers_count}</b> <Link onClick={handleFollowers} >Followers</Link></span> |{""}
-                    <span><b>{profile.following_count}</b> <Link onClick={handleFollowing} >Followings</Link></span> |{""}
+        <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mx-auto mt-10">
+            {/* <Notifications userId={profile.user_id} /> */}
+            <div className="text-center">
+                {profile.avatar && (
+                    <img
+                        src={profile.avatar}
+                        alt="Profile"
+                        className="w-24 h-24 rounded-full object-cover mx-auto mb-4"
+                    />
+                )}
+                <h2 className="text-xl font-bold text-gray-800">{profile.username}</h2>
+                {profile.bio && <p className="text-gray-600 mt-2 text-sm">{profile.bio}</p>}
+                {profile.website && (
+                    <a
+                        href={profile.website}
+                        className="text-gray-600 hover:underline block mt-1 text-sm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {profile.website}
+                    </a>
+                )}
+                <div className="mt-3 flex justify-center gap-6 text-sm text-gray-600">
+                    <span className="flex flex-col items-center">
+                        <b className="text-gray-800">{profile.post_count}</b> Posts
+                    </span>
+                    <span className="flex flex-col items-center">
+                        <b className="text-gray-800">{profile.followers_count}</b>
+                        <button onClick={handleFollowers} className="text-gray-800 hover:underline">
+                            Followers
+                        </button>
+                    </span>
+                    <span className="flex flex-col items-center">
+                        <b className="text-gray-800">{profile.following_count}</b>
+                        <button onClick={handleFollowing} className="text-gray-800 hover:underline">
+                            Followings
+                        </button>
+                    </span>
                 </div>
             </div>
-            <h3 style={{ marginTop: 20 }}>Posts</h3>
-            <ul>
-                {posts.map((post) => (
-                    <div>
-                        <p>-------------------------------------------------------------</p>
-                        <img
-                            src={post.image_url}
-                            alt="Post"
-                            style={{
-                                width: '200px',      
-                                height: '150px',    
-                                objectFit: 'cover',  
-                                borderRadius: '8px', 
-                                display: 'block',    
-                                margin: '10px', 
-                                boxShadow: '0 2px 8px rgba(0,0,0,0.1)', 
-                            }}
-                        />
-                        <li key={post.id}>{post.title || post.content || "Untitled Post"}</li></div>
-
-                ))}
-            </ul>
-            <button onClick={handleFeed} style={{ marginTop: 30, width: "100%" }}>
-                feed
-            </button>
-            <button onClick={handleExplorePeople} style={{ width: "100%" }}>
-                Explore people
-            </button>
-            <button onClick={handleEditProfile} style={{ width: "100%" }}>
-                Edit Profile
-            </button>
-            <button onClick={handleLogout} style={{ width: "100%" }}>
-                Logout
-            </button>
-            <div style={{ color: "red" }}>{msg}</div>
+            <div className="mt-6 grid grid-cols-2 gap-3">
+                <button
+                    onClick={handleFeed}
+                    className="bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition-colors"
+                >
+                    Feed
+                </button>
+                <button
+                    onClick={handleExplorePeople}
+                    className="bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition-colors"
+                >
+                    Explore People
+                </button>
+                <button
+                    onClick={handleEditProfile}
+                    className="bg-gray-800 text-white py-2 rounded-md hover:bg-gray-700 transition-colors"
+                >
+                    Edit Profile
+                </button>
+                <button
+                    onClick={handleLogout}
+                    className="bg-gray-600 text-white py-2 rounded-md hover:bg-gray-700 transition-colors"
+                >
+                    Logout
+                </button>
+            </div>
+            <h3 className="text-lg font-bold text-gray-800 mt-6 mb-4">Posts</h3>
+            {posts.length === 0 ? (
+                <p className="text-center text-gray-600">No posts available.</p>
+            ) : (
+                <ul className="space-y-4">
+                    {posts.map((post) => (
+                        <li key={post.id} className="p-4 bg-gray-50 border border-gray-200 rounded-md">
+                            <hr className="border-gray-300 mb-4" />
+                            {post.image_url && (
+                                <img
+                                    src={post.image_url}
+                                    alt="Post"
+                                    className="w-48 h-36 object-cover rounded-md block mx-auto mb-4 shadow-sm"
+                                />
+                            )}
+                            <p className="text-gray-800 font-medium">
+                                {post.title || post.content || "Untitled Post"}
+                            </p>
+                            <p className="text-xs text-gray-500 mt-1">
+                                Posted by {post.author_username} on{' '}
+                                {new Date(post.created_at).toLocaleDateString()}
+                            </p>
+                            <Comments postId={post.id} />
+                            <hr className="border-gray-300 mt-4" />
+                        </li>
+                    ))}
+                </ul>
+            )}
+            {msg && <p className="text-red-500 text-sm mt-4 text-center">{msg}</p>}
         </div>
+        // <div style={{ maxWidth: 400, margin: "0 auto" }}>
+
+        //     <Notifications userId={profile.user_id} />   
+        //     <div style={{ textAlign: "center" }}>
+        //         <img
+        //             src={profile.avatar}
+        //             alt="profile"
+        //             width={100}
+        //             height={100}
+        //             style={{ borderRadius: "50%", objectFit: "cover" }}
+        //         />
+        //         <h2>{profile.username}</h2>
+        //         <h3>{profile.bio}</h3>
+        //         <h3>{profile.website}</h3>
+        //         <div>
+        //             <span><b>{profile.post_count}</b> Posts</span> |{""}
+        //             <span><b>{profile.followers_count}</b> <Link onClick={handleFollowers} >Followers</Link></span> |{""}
+        //             <span><b>{profile.following_count}</b> <Link onClick={handleFollowing} >Followings</Link></span> |{""}
+        //         </div>
+        //     </div>
+        //     <h3 style={{ marginTop: 20 }}>Posts</h3>
+        //     <ul>
+        //         {posts.map((post) => (
+        //             <div>
+        //                 <p>-------------------------------------------------------------</p>
+        //                 <img
+        //                     src={post.image_url}
+        //                     alt="Post"
+        //                     style={{
+        //                         width: '200px',      
+        //                         height: '150px',    
+        //                         objectFit: 'cover',  
+        //                         borderRadius: '8px', 
+        //                         display: 'block',    
+        //                         margin: '10px', 
+        //                         boxShadow: '0 2px 8px rgba(0,0,0,0.1)', 
+        //                     }}
+        //                 />
+        //                 <li key={post.id}>{post.title || post.content || "Untitled Post"}</li></div>
+
+        //         ))}
+        //     </ul>
+        //     <button onClick={handleFeed} style={{ marginTop: 30, width: "100%" }}>
+        //         feed
+        //     </button>
+        //     <button onClick={handleExplorePeople} style={{ width: "100%" }}>
+        //         Explore people
+        //     </button>
+        //     <button onClick={handleEditProfile} style={{ width: "100%" }}>
+        //         Edit Profile
+        //     </button>
+        //     <button onClick={handleLogout} style={{ width: "100%" }}>
+        //         Logout
+        //     </button>
+        //     <div style={{ color: "red" }}>{msg}</div>
+        // </div>
     );
 };
 
