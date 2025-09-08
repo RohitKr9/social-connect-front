@@ -157,67 +157,7 @@ const CreateProfile = () => {
     </button>
   </form>
 </div>
-    // <div className="max-w-xl mx-auto mt-10 p-6 bg-white rounded shadow">
-    //   <h2 className="text-2xl font-bold text-center mb-6">Create Your Profile</h2>
-
-    //   <div className="mb-4">
-    //     <label className="block mb-1 font-medium">Bio</label>
-    //     <textarea
-    //       name="bio"
-    //       value={formData.bio}
-    //       onChange={handleChange}
-    //       className="w-full border rounded p-2"
-    //       rows="3"
-    //       maxLength="160"
-    //     />
-    //   </div>
-
-    //   <div className="mb-4">
-    //     <label className="block mb-1 font-medium">Website</label>
-    //     <input
-    //       type="url"
-    //       name="website"
-    //       value={formData.website}
-    //       onChange={handleChange}
-    //       className="w-full border rounded p-2"
-    //     />
-    //   </div>
-
-    //   <div className="mb-4">
-    //     <label className="block mb-1 font-medium">Profile Visibility</label>
-    //     <select
-    //       name="profile_visibility"
-    //       value={formData.profile_visibility}
-    //       onChange={handleChange}
-    //       className="w-full border rounded p-2"
-    //     >
-    //       <option value="public">Public</option>
-    //       <option value="private">Private</option>
-    //       <option value="followers_only">Followers Only</option>
-    //     </select>
-    //   </div>
-
-    //   <div className="mb-4">
-    //     <label className="block mb-1 font-medium">Avatar (optional)</label>
-    //     <input
-    //       type="file"
-    //       name="avatar"
-    //       accept="image/*"
-    //       onChange={handleChange}
-    //       className="w-full border p-2 rounded"
-    //     />
-    //   </div>
-
-    //   <button
-    //     onClick={handleCreateProfile}
-    //     disabled={uploading}
-    //     className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
-    //   >
-    //     {uploading ? 'Creating Profile...' : 'Create Profile'}
-    //   </button>
-
-    //   {message && <p className="text-center text-red-500 mt-4">{message}</p>}
-    // </div>
+   
   );
 };
 

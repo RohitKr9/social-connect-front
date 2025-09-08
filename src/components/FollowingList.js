@@ -79,9 +79,12 @@ const FollowingList = ({ setView }) => {
                   alt={`${following.username || 'Unknown User'} avatar`}
                   className="w-10 h-10 rounded-full object-cover"
                 />
-                <p className="text-gray-800 font-medium">
-                  {following.username || 'Unknown User'}
-                </p>
+                <button
+                  className="text-gray-800 font-medium hover:underline"
+                  onClick={() => navigate('/user/' + following.user_id)}
+                >
+                    {following.username || 'Unknown User'}
+                </button>
               </div>
               {console.log(following)}
               <FollowButton

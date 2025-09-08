@@ -78,9 +78,13 @@ const ExplorePeople = ({ setView }) => {
                   alt={`${user.username || 'Unknown User'} avatar`}
                   className="w-10 h-10 rounded-full object-cover"
                 />
-                <p className="text-gray-800 font-medium">
-                  {user.username || 'Unknown User'}
-                </p>
+                <button
+                  className="text-gray-800 font-medium hover:underline"
+                  onClick={() => navigate('/user/' + user.user_id)}
+                >
+                    {user.username || 'Unknown User'}
+                </button>
+
               </div>
 
               <FollowButton
@@ -92,7 +96,7 @@ const ExplorePeople = ({ setView }) => {
         </div>
       )}
     </div>
-   
+
   );
 };
 

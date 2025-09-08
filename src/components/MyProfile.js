@@ -215,62 +215,6 @@ const MyProfile = () => {
             )}
             {msg && <p className="text-red-500 text-sm mt-4 text-center">{msg}</p>}
         </div>
-        // <div style={{ maxWidth: 400, margin: "0 auto" }}>
-
-        //     <Notifications userId={profile.user_id} />   
-        //     <div style={{ textAlign: "center" }}>
-        //         <img
-        //             src={profile.avatar}
-        //             alt="profile"
-        //             width={100}
-        //             height={100}
-        //             style={{ borderRadius: "50%", objectFit: "cover" }}
-        //         />
-        //         <h2>{profile.username}</h2>
-        //         <h3>{profile.bio}</h3>
-        //         <h3>{profile.website}</h3>
-        //         <div>
-        //             <span><b>{profile.post_count}</b> Posts</span> |{""}
-        //             <span><b>{profile.followers_count}</b> <Link onClick={handleFollowers} >Followers</Link></span> |{""}
-        //             <span><b>{profile.following_count}</b> <Link onClick={handleFollowing} >Followings</Link></span> |{""}
-        //         </div>
-        //     </div>
-        //     <h3 style={{ marginTop: 20 }}>Posts</h3>
-        //     <ul>
-        //         {posts.map((post) => (
-        //             <div>
-        //                 <p>-------------------------------------------------------------</p>
-        //                 <img
-        //                     src={post.image_url}
-        //                     alt="Post"
-        //                     style={{
-        //                         width: '200px',      
-        //                         height: '150px',    
-        //                         objectFit: 'cover',  
-        //                         borderRadius: '8px', 
-        //                         display: 'block',    
-        //                         margin: '10px', 
-        //                         boxShadow: '0 2px 8px rgba(0,0,0,0.1)', 
-        //                     }}
-        //                 />
-        //                 <li key={post.id}>{post.title || post.content || "Untitled Post"}</li></div>
-
-        //         ))}
-        //     </ul>
-        //     <button onClick={handleFeed} style={{ marginTop: 30, width: "100%" }}>
-        //         feed
-        //     </button>
-        //     <button onClick={handleExplorePeople} style={{ width: "100%" }}>
-        //         Explore people
-        //     </button>
-        //     <button onClick={handleEditProfile} style={{ width: "100%" }}>
-        //         Edit Profile
-        //     </button>
-        //     <button onClick={handleLogout} style={{ width: "100%" }}>
-        //         Logout
-        //     </button>
-        //     <div style={{ color: "red" }}>{msg}</div>
-        // </div>
     );
 };
 

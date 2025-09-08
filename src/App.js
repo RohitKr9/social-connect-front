@@ -11,6 +11,7 @@ import FollowingList from './components/FollowingList';
 import FollowersList from './components/FollowersList';
 import ExplorePeople from './components/ExplorePeople';
 import CreateProfile from './components/CreateProfile'; 
+import UserDetail from './components/UserDetail';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/followers" element={<FollowersList />} />
         <Route path="/explore-people" element={<ExplorePeople />} />
         <Route path="/create-profile" element={<CreateProfile />} />
+        <Route path="/user/:id" element={<UserDetail />} />
       </Routes>
     </Router>
   );
