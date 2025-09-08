@@ -28,8 +28,8 @@ const Register = () => {
         body: JSON.stringify(formData)
       });
       const data = await response.json();
-      setMessage(data.message || 'Registration successful! Please verify your email.');
-      if (response.ok) navigate('/login');
+      setMessage(data.message || 'Registration successful! Please verify your email and Login.');
+      // if (response.ok) navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);
       setMessage('Error registering. Please try again.');
@@ -39,7 +39,7 @@ const Register = () => {
   return (
     <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md mx-auto mt-10">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Register</h2>
-      {message && <p className="text-red-500 text-sm mb-4 text-center">{message}</p>}
+      {message && <p className="text-green-500 text-lg mb-4 text-center">{message}</p>}
       <form className="space-y-4">
         <div>
           <input
